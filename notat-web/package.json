@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: not test specified\" && exit 1",
     "elm": "elm",
-    "start": "webpack-dev-server --open"
+    "start": "webpack-dev-server --open",
+    "build": "webpack -p"
   },
   "author": "Alexander Hoem Rosbach",
   "license": "MIT",
