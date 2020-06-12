@@ -1,4 +1,4 @@
-module Noteboard exposing (Msg(..), Noteboard, create, fromNotes, new, update, view)
+module Noteboard exposing (Msg(..), Noteboard, create, fromNotes, get, new, toList, update, view)
 
 import Browser.Dom as Dom
 import Dict exposing (Dict)
@@ -34,6 +34,22 @@ create =
 fromNotes : List NoteData -> Noteboard
 fromNotes =
     List.map (\n -> ( idToString n.id, SavedNote n )) >> Dict.fromList >> Noteboard
+
+
+noteData : Note -> NoteData
+noteData note =
+    case note of
+        SavedNote data ->
+            data
+
+        EditableNote data ->
+            data
+
+
+get : NoteID -> Noteboard -> Maybe NoteData
+get id (Noteboard board) =
+    Dict.get (idToString id) board
+        |> Maybe.map noteData
 
 
 set : NoteID -> Note -> Noteboard -> Noteboard

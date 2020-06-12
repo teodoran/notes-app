@@ -1,7 +1,6 @@
-module NoteSuite exposing (..)
+module NoteSuite exposing (suite)
 
 import Expect exposing (Expectation)
-import Fuzz exposing (Fuzzer, int, list, string)
 import Json.Decode
 import Json.Encode
 import Note
