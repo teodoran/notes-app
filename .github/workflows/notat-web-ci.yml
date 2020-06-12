@@ -4,11 +4,11 @@ on:
   push:
     branches: [ master ]
     paths: 
-      - 'notat-web/*'
+      - 'notat-web/**'
   pull_request:
     branches: [ master ]
     paths: 
-      - 'notat-web/*'
+      - 'notat-web/**'
 
 jobs:
   build:
