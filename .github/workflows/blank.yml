@@ -1,0 +1,29 @@
+name: notat-web-CI
+
+on:
+  push:
+    branches: [ master ]
+    paths: 
+      - 'notat-web/*'
+  pull_request:
+    branches: [ master ]
+    paths: 
+      - 'notat-web/*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup node
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.18.0
+
+    - name: npm install, build
+      working-directory: notat-web
+      run: |
+        npm install
+        npm run build        
