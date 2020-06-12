@@ -22,8 +22,11 @@ jobs:
       with:
         node-version: 12.18.0
 
-    - name: npm install, build
+    - name: npm install, validate, test and build
       working-directory: notat-web
       run: |
         npm install
+        npm run validate
+        npm run test
         npm run build        
+
