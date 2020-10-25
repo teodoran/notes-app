@@ -33,3 +33,5 @@ jobs:
         with:
           push: true
           tags: notat-api:${{ github.sha }}
+          context: ./notat-api
+          file: ./notat-api/Dockerfile
