@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: notes-app-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+    - host: notes.rosbach.no
+      http:
+        paths:
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: notat-api
+                port: 
+                  number: 8080
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: oda-writer
+                port: 
+                  number: 80
