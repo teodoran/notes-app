@@ -5,6 +5,7 @@ on:
     branches: [ master ]
     paths: 
       - 'notat-web/**'
+      
   pull_request:
     branches: [ master ]
     paths: 
@@ -15,18 +16,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: Setup node
-      uses: actions/setup-node@v1
-      with:
-        node-version: 12.18.0
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.18.0
 
-    - name: npm install, validate, test and build
-      working-directory: notat-web
-      run: |
-        npm install
-        npm run validate
-        npm run test
-        npm run build        
-
+      - name: npm install, validate, test and build
+        working-directory: notat-web
+        run: |
+          npm install
+          npm run validate
+          npm run test
+          npm run build        
+        
+      - name: Push to GitHub Packages
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: docker.pkg.github.com
+          repository: cx-devops-101/notes-app/notat-web
+          path: notat-web
+          tag_with_sha: true
+          push: ${{github.ref == 'refs/heads/master'}}
