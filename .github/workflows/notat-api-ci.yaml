@@ -7,8 +7,7 @@ defaults:
 on:
   push:
     branches: [ master ]
-    paths: 
-      - 'notat-api/**'
+
   pull_request:
     branches: [ master ]
     paths: 
@@ -17,7 +16,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
       
@@ -28,13 +26,7 @@ jobs:
       
       - name: Build with Gradle
         run: ./gradlew build 
-      
-      - name: Publish container image
-        if: github.ref == 'refs/heads/master'
-        uses: docker/build-push-action@v2
-        with:
-          push: true
-          tags: notat-api:${{ github.sha }}
+
   publish:
     if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
