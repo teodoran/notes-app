@@ -20,6 +20,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: oda-writer
+                name: notat-web
                 port: 
                   number: 80
