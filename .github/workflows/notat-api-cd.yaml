@@ -18,6 +18,9 @@ jobs:
       - name: Build with Gradle
         run: ./notat-api/gradlew build 
 
+      - name: Verify build
+        run: ls -l ./notat-api/build/ && ls -l ./notat-api/build/libs
+
       - name: Push to GitHub Packages
         uses: docker/build-push-action@v1
         with:
