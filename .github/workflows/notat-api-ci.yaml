@@ -3,8 +3,8 @@ name: notat-api-CI
 on:
   push:
     branches: [ master ]
-    # paths: 
-    #   - 'notat-api/**'
+    paths: 
+      - 'notat-api/**'
 
   pull_request:
     branches: [ master ]
@@ -29,8 +29,8 @@ jobs:
         uses: docker/build-push-action@v1
         with:
           username: ${{ github.actor }}
-          password: ${{ secrets.CR_PAT }}
-          registry: ghcr.io
+          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: docker.pkg.github.com
           repository: cx-devops-101/notes-app/notat-api
           path: notat-api
           tag_with_sha: true

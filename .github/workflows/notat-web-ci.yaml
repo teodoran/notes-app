@@ -3,8 +3,8 @@ name: notat-web-CI
 on:
   push:
     branches: [ master ]
-    # paths: 
-    #   - 'notat-web/**'
+    paths: 
+      - 'notat-web/**'
       
   pull_request:
     branches: [ master ]
@@ -35,8 +35,8 @@ jobs:
         uses: docker/build-push-action@v1
         with:
           username: ${{ github.actor }}
-          password: ${{ secrets.CR_PAT }}
-          registry: ghcr.io
+          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: docker.pkg.github.com
           repository: cx-devops-101/notes-app/notat-web
           path: notat-web
           tag_with_sha: true
