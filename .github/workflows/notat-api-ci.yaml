@@ -1,10 +1,11 @@
 name: notat-api-CI
 
-defaults:
-  run:
-    working-directory: notat-api
-
 on:
+  push:
+    branches: [ master ]
+    paths: 
+      - 'notat-api/**'
+
   pull_request:
     branches: [ master ]
     paths: 
@@ -22,4 +23,15 @@ jobs:
           java-version: 11
       
       - name: Build with Gradle
-        run: ./gradlew build 
+        run: ./notat-api/gradlew build 
+
+      - name: Push to GitHub Packages
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: docker.pkg.github.com
+          repository: cx-devops-101/notes-app/notat-api
+          path: notat-api
+          tag_with_sha: true
+          push: ${{github.ref == 'refs/heads/master'}}

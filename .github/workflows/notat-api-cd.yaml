@@ -1,9 +1,5 @@
 name: notat-api-CD
 
-defaults:
-  run:
-    working-directory: notat-api
-
 on:
   push:
     branches: [ master ]
@@ -18,15 +14,9 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
-
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
-      
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
       
       - name: Build with Gradle
-        run: ./gradlew build 
+        run: ./notat-api/gradlew build 
 
       - name: Push to GitHub Packages
         uses: docker/build-push-action@v1
@@ -35,4 +25,6 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: docker.pkg.github.com
           repository: cx-devops-101/notes-app/notat-api
+          path: notat-api
           tag_with_sha: true
+          push: ${{github.ref == 'refs/heads/master'}}
