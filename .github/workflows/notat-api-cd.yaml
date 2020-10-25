@@ -16,7 +16,7 @@ jobs:
           java-version: 11
       
       - name: Build with Gradle
-        run: ./notat-api/gradlew build 
+        run: ./notat-api/gradlew --project-dir=notat-api build
 
       - name: Verify build
         run: ls -l ./notat-api/build/ && ls -l ./notat-api/build/libs
