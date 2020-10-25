@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: notat-api
-        image: docker.pkg.github.com/cx-devops-101/notes-app/notat-api:sha-55bdc02
+        image: ghcr.io/cx-devops-101/notes-app/notat-api:sha-55bdc02
         imagePullPolicy: IfNotPresent
         ports:
         - name: http
