@@ -32,6 +32,6 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: docker.pkg.github.com/cx-devops-101/notes-app/notat-api:${{ github.sha }}
+          tags: notat-api:${{ github.sha }}
           context: ./notat-api
           file: ./notat-api/Dockerfile
