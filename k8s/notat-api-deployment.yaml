@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: notat-api
-        image: ghcr.io/cx-devops-101/notes-app/notat-api:sha-ba6d124
+        image: ghcr.io/cx-devops-101/notes-app/notat-api:sha-6ca3670
         imagePullPolicy: IfNotPresent
         ports:
         - name: http

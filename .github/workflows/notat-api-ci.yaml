@@ -3,8 +3,8 @@ name: notat-api-CI
 on:
   push:
     branches: [ master ]
-    # paths: 
-    #   - 'notat-api/**'
+    paths: 
+      - 'notat-api/**'
 
   pull_request:
     branches: [ master ]

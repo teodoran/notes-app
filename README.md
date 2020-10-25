@@ -1,5 +1,5 @@
 ![](https://github.com/cx-cloud-101/devops-101/workflows/notat-web-CI/badge.svg)
-![](https://github.com/cx-cloud-101/devops-101/workflows/notat-web-CI/badge.svg?event=pull_request)
+![](https://github.com/cx-cloud-101/devops-101/workflows/notat-api-CI/badge.svg)
 
 
 # Devops-101
