@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notat-api
+spec:
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 0
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: notat-api
+  template:
+    metadata:
+      labels:
+        app: notat-api
+    spec:
+      containers:
+      - name: notat-api
+        image: ghcr.io/<github username>/notes-app/notat-api:<image-tag>
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: http
+          containerPort: 8080
+          protocol: TCP
+        livenessProbe:
+          httpGet:
+            path: /api/healthz
+            port: 8080
+          initialDelaySeconds: 3
+          timeoutSeconds: 3
+        readinessProbe:
+          httpGet:
+            path: /api/healthz
+            port: 8080
+          initialDelaySeconds: 3
+          timeoutSeconds: 3
+        resources:
+          requests:
+            cpu: 100m
+            memory: 32Mi

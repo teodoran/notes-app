@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: notat-api
+spec:
+  type: ClusterIP
+  selector:
+    app: notat-api
+  ports:
+    - name: http
+      port: 8080
+      protocol: TCP
+      targetPort: http
