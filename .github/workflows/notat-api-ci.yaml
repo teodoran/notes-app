@@ -34,4 +34,5 @@ jobs:
           repository: <github username>/notes-app/notat-api
           path: notat-api
           tag_with_sha: true
+          tags: latest
           push: ${{github.ref == 'refs/heads/master'}}
