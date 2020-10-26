@@ -109,13 +109,14 @@ is `Ok` or `Healthy`. We still want to make a change so that we will trigger a b
 And voilà, the workflow should be successful and we can go ahead and merge the pull-request. This will trigger the `notat-api-CI`
 workflow for the master branch, which will push the container image to your GitHub package registry. When the workflow is successful
 you can verify this by going to your GitHub profile page and navigate to the `Packages` tab, where you should find the 
-`notes-app/notat-api` container. We also have to change the visibility of the container from private to public.
+`notes-app/notat-api` container. Make a note of the container image tag, e.g. something like `sha-c92ee65`, preferably save it 
+somewhere. We also have to change the visibility of the container from private to public.
 
 1. Click on the `notes-app/notat-api` container.
 1. Click on `Package Settings`.
 1. Scroll down to the `Danger Zone` and click on `Make public`.
 1. If you have docker on your computer you can verify that it is public if you want to:
-  - `docker run --rm -it ghcr.io/mapster/notes-app/notat-api`
+  - `docker run --rm -it ghcr.io/<github username>/notes-app/notat-api`
 
 Let's trigger the `notat-web-CI` workflow as well, but this time we'll skip the failing test step.
 
@@ -126,8 +127,42 @@ Let's trigger the `notat-web-CI` workflow as well, but this time we'll skip the 
 1. Wait a few seconds and you should see that the workflow has been triggered.
 
 The workflow should execute successfully, and when it is you can safly approve and merge the pull-request. Which, again, should
-trigger the workflow, and when it's successful we should find the container in the `Packages` list. Go ahead and change the 
-visibility to public for it as well. And similarily, if you want to, you can verify that it is public with docker locally:
-`docker run --rm -it ghcr.io/mapster/notes-app/notat-web`.
+trigger the workflow, and when it's successful we should find the container in the `Packages` list. Make a note of the `notes-web`
+container image tag as well, e.g. something like `sha-c92ee65`, preferably save it somewhere. Go ahead and change the visibility 
+to public for it as well. And similarily, if you want to, you can verify that it is public with docker locally:
+`docker run --rm -it ghcr.io/<github username>/notes-app/notat-web`.
 
-## Step 3: Deploy to the cluster
+## Step 3: Add deployment manifests
+At this point we hope that you're positively steaming with anticipation of how your brand new Sticky Notes application looks, 
+and you're ready to experience it's wonders. Before you can do that though, you must declare how it shall be deployed. 
+For the purposes of this workshop we've elected to use Kubernetes, so we need us some Kubernetes workload manifests, which
+we of course have prepared for you. 
+
+### Adapt the workflows
+The manifests that we've prepared for you require some changes for them to work for your notes-app. So go ahead and navigate 
+to the `Code` tab of your repository in GitHub, and switch to the `add-deploy-manifests`-branch. You should see the `k8s`
+directory in the root of the repository, navigate to it. There are three files you need to modify, but the changes are more
+or less the same, so this should be easy. When you've modifed a file and need to save it, add the change as a commit directly
+to the `add-deploy-manifests`-branch.
+
+1. `k8s/ingress.yaml`: Replace `<username>` with the hostname you desire ([a-z0-9]+), preferably your GitHub username.
+2. `k8s/notat-api-deployment.yaml`: 
+  1. Replace `<github username>` with your GitHub username.
+  1. Replace `<image-tag>` with your tag you made a note about earlier for the `notat-api` container.
+2. `k8s/notat-web-deployment.yaml`: 
+  1. Replace `<github username>` with your GitHub username.
+  1. Replace `<image-tag>` with your tag you made a note about earlier for the `notat-web` container.
+  
+When you've made all the changes you should have added three new commits to the `add-deploy-manifests`-branch, and we should
+be ready to merge the branch into master. Create a pull-request and merge it, though remember that GitHub automatically selects
+the repository you forked as base repository, but you should select your own repository as base. To change that click on 
+`base repository: cx-devops-101/notes-app` and select `<username>/notes-app`. The view should change entirely and you should see 
+a list of branches, select `add-deploy-manifests`. Create the pull-request, review the changes and merge it.
+
+## Step 4: Add deployment to cluster
+We're getting closer to a complete CI/CD setup. What remains is to tell the Kubernetes cluster we want to deploy to about our
+deployment manifests. In the cluster there is an operator that continously checks for the `cx-devops-101/k8s-infra` cluster for
+changes, so our goal at this point is to add a pull-request to that repository where we tell the operator about our application.
+
+Go to [cx-devops-101/k8s-infra](https://github.com/cx-devops-101/k8s-infra), fork it and continue with the instructions you find
+there.
