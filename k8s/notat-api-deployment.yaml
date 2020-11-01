@@ -15,7 +15,7 @@ spec:
       labels:
         app: notat-api
       annotations:
-        prometheus.io/scrape: true
+        prometheus.io/scrape: "true"
         prometheus.io/path: /api/actuator/prometheus
     spec:
       containers:
