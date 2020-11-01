@@ -6,7 +6,7 @@ metadata:
     kubernetes.io/ingress.class: "nginx"
 spec:
   rules:
-    - host: <username>.devops.rosbach.no
+    - host: teodoran.devops.rosbach.no
       http:
         paths:
           - path: /api
