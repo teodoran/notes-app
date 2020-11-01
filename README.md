@@ -144,7 +144,7 @@ somewhere. We also have to change the visibility of the container from private t
 1. Click on the `notes-app/notat-api` container.
 1. Click on `Package Settings`.
 1. Scroll down to the `Danger Zone` and click on `Make public`.
-1. If you have docker on your computer you can verify that it is public if you want to:
+1. (Optional) If you have docker on your computer you can verify that it is public if you want to:
   - `docker run --rm -it ghcr.io/<github username>/notes-app/notat-api`
 
 ![](images/make-package-public.png)
