@@ -115,7 +115,7 @@ somewhere. We also have to change the visibility of the container from private t
 1. Click on the `notes-app/notat-api` container.
 1. Click on `Package Settings`.
 1. Scroll down to the `Danger Zone` and click on `Make public`.
-1. If you have docker on your computer you can verify that it is public if you want to:
+1. (Optional) If you have docker on your computer you can verify that it is public if you want to:
   - `docker run --rm -it ghcr.io/<github username>/notes-app/notat-api`
 
 Let's trigger the `notat-web-CI` workflow as well, but this time we'll skip the failing test step.
@@ -147,11 +147,11 @@ to the `add-deploy-manifests`-branch.
 
 1. `k8s/ingress.yaml`: Replace `<username>` with the hostname you desire ([a-z0-9]+), preferably your GitHub username.
 2. `k8s/notat-api-deployment.yaml`: 
-  1. Replace `<github username>` with your GitHub username.
-  1. Replace `<image-tag>` with your tag you made a note about earlier for the `notat-api` container.
+    1. Replace `<github username>` with your GitHub username.
+    1. Replace `<image-tag>` with your tag you made a note about earlier for the `notat-api` container.
 2. `k8s/notat-web-deployment.yaml`: 
-  1. Replace `<github username>` with your GitHub username.
-  1. Replace `<image-tag>` with your tag you made a note about earlier for the `notat-web` container.
+    1. Replace `<github username>` with your GitHub username.
+    1. Replace `<image-tag>` with your tag you made a note about earlier for the `notat-web` container.
   
 When you've made all the changes you should have added three new commits to the `add-deploy-manifests`-branch, and we should
 be ready to merge the branch into master. Create a pull-request and merge it, though remember that GitHub automatically selects
@@ -161,7 +161,7 @@ a list of branches, select `add-deploy-manifests`. Create the pull-request, revi
 
 ## Step 4: Add deployment to cluster
 We're getting closer to a complete CI/CD setup. What remains is to tell the Kubernetes cluster we want to deploy to about our
-deployment manifests. In the cluster there is an operator that continously checks for the `cx-devops-101/k8s-infra` cluster for
+deployment manifests. In our cluster there is an operator that continously checks the `cx-devops-101/k8s-infra` repository for
 changes, so our goal at this point is to add a pull-request to that repository where we tell the operator about our application.
 
 Go to [cx-devops-101/k8s-infra](https://github.com/cx-devops-101/k8s-infra), fork it and continue with the instructions you find
