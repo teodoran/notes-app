@@ -18,7 +18,7 @@ locally and pushing them to GitHub.
 
 ## Step 2: Setup CI
 As with most DevOps oriented projects, we need some CI workflows/pipelines/jobs. Writing such pipelines
-for a CI framework you haven't used before is always a big hassle, so don't worry - we've got you covered.
+for a CI framework you haven't used before is always a big hassle, but don't worry - we've got you covered.
 In your forked repository you'll find a branch named `add-ci-workflows` where we've prepared the GitHub
 Actions workflows for you. You only need to do some small modifications.
 
@@ -46,9 +46,8 @@ your repository and switch to the `add-ci-workflows` branch.
 
 ![](images/add-ci-workflow-branch.png)
 
-You should now see a directory in the
-`.github/workflows` directory, so navigate to it. We need to edit both `notat-api-ci.yaml` and
-`notat-web-ci.yaml`, so do the following for both files.
+You should now see the directory `.github/workflows` directory, so navigate to it. We need to edit both 
+`notat-api-ci.yaml` and `notat-web-ci.yaml`, so do the following for both files.
 
 1. Navigate to the file, i.e click on it.
 1. Click on edit (the pencil in the top-right corner of the file view).
@@ -115,9 +114,9 @@ executed for pull-requests.
 
 ![](images/build-failed.png)
 
-What happened? The job failed right? The reason? Well, we broke a unit test with our change and we might also have broken other
-the expecation other applications has about the API. The API specification in our case states that valid answers for that endpoint
-is `Ok` or `Healthy`. We still want to make a change so that we will trigger a build so, let's change it to `Ok` instead.
+What happened? The job failed right? The reason? Well, we broke a unit test with our change and we might also have broken
+expecations that other applications has about the API. The API specification in our case states that valid answers for that endpoint
+is `Ok` or `Healthy`. We still want to make a change that will trigger a build so, let's change it to `Ok` instead.
 
 1. Navigate to the `Code` tab.
 1. Switch to the branch you created for the pull-request, e.g. `<username>-patch-1`
@@ -200,7 +199,7 @@ a list of branches, select `add-deploy-manifests`. Create the pull-request, revi
 
 ## Step 4: Add deployment to cluster
 We're getting closer to a complete CI/CD setup. What remains is to tell the Kubernetes cluster we want to deploy to about our
-deployment manifests. In the cluster there is an operator that continuously checks for the `cx-devops-101/k8s-infra` cluster for
+deployment manifests. In our cluster there is an operator that continuously checks the `cx-devops-101/k8s-infra` repository for
 changes, so our goal at this point is to add a pull-request to that repository where we tell the operator about our application.
 
 Go to [cx-devops-101/k8s-infra](https://github.com/cx-devops-101/k8s-infra), fork it and continue with the instructions you find
