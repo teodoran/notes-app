@@ -149,13 +149,13 @@ somewhere. We also have to change the visibility of the container from private t
 ![](images/make-package-public.png)
 
 ### Build the frontend
-Let's trigger the `notat-web-CI` workflow as well, but this time we'll skip failing and fixing a test.
+Let's trigger the `notat-web-CI` workflow as well, but this time we'll trigger it manually.
 
-1. Navigate to the master branch and the file `notat-web/index.html`, and edit it.
-1. Add a new-line at the end of the file.
-1. Do not commit directly to the `master` branch, but rather select `Create a new branch for this commit and start a pull request`.
-1. Create the pull request
-1. Wait a few seconds and you should see that the workflow has been triggered.
+1. Navigate to the `Actions` tab.
+1. Click on `notat-web-CI in the workflows list.
+1. Click on `Run workflow`
+    - Use workflow from `Branch: master`.
+    - Click on the green `Run workflow` button.
 
 ![](images/running-notat-we-ci.png)
 
