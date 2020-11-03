@@ -159,8 +159,7 @@ Let's trigger the `notat-web-CI` workflow as well, but this time we'll trigger i
 
 ![](images/running-notat-we-ci.png)
 
-The workflow should execute successfully, and when it is you can safely approve and merge the pull-request. Which, again, should
-trigger the workflow, and when it's successful we should find the container in the `Packages` list.
+The workflow should execute successfully, and when it's successful we should find the container in the `Packages` list.
 
 ![](images/two-packages-on-github.png)
 
