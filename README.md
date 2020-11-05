@@ -18,7 +18,7 @@ locally and pushing them to GitHub.
 
 ## Step 2: Setup CI
 As with most DevOps oriented projects, we need some CI workflows/pipelines/jobs. Writing such pipelines
-for a CI framework you haven't used before is always a big hassle, so don't worry - we've got you covered.
+for a CI framework you haven't used before is always a big hassle, but don't worry - we've got you covered.
 In your forked repository you'll find a branch named `add-ci-workflows` where we've prepared the GitHub
 Actions workflows for you. You only need to do some small modifications.
 
@@ -46,9 +46,8 @@ your repository and switch to the `add-ci-workflows` branch.
 
 ![](images/add-ci-workflow-branch.png)
 
-You should now see a directory in the
-`.github/workflows` directory, so navigate to it. We need to edit both `notat-api-ci.yaml` and
-`notat-web-ci.yaml`, so do the following for both files.
+You should now see the directory `.github/workflows`. We need to edit both
+`notat-api-ci.yaml` and `notat-web-ci.yaml` in this directory, so do the following for both files.
 
 1. Navigate to the file, i.e click on it.
 1. Click on edit (the pencil in the top-right corner of the file view).
@@ -115,9 +114,9 @@ executed for pull-requests.
 
 ![](images/build-failed.png)
 
-What happened? The job failed right? The reason? Well, we broke a unit test with our change and we might also have broken other
-the expecation other applications has about the API. The API specification in our case states that valid answers for that endpoint
-is `Ok` or `Healthy`. We still want to make a change so that we will trigger a build so, let's change it to `Ok` instead.
+What happened? The job failed right? The reason? Well, we broke a unit test with our change and we might also have broken
+expectations that other applications has about the API. The API specification in our case states that valid answers for that endpoint
+is `Ok` or `Healthy`. We still want to make a change that will trigger a build so, let's change it to `Ok` instead.
 
 1. Navigate to the `Code` tab.
 1. Switch to the branch you created for the pull-request, e.g. `<username>-patch-1`
@@ -144,24 +143,23 @@ somewhere. We also have to change the visibility of the container from private t
 1. Click on the `notes-app/notat-api` container.
 1. Click on `Package Settings`.
 1. Scroll down to the `Danger Zone` and click on `Make public`.
-1. If you have docker on your computer you can verify that it is public if you want to:
+1. (Optional) If you have docker on your computer you can verify that it is public if you want to:
   - `docker run --rm -it ghcr.io/<github username>/notes-app/notat-api`
 
 ![](images/make-package-public.png)
 
 ### Build the frontend
-Let's trigger the `notat-web-CI` workflow as well, but this time we'll skip failing and fixing a test.
+Let's trigger the `notat-web-CI` workflow as well, but this time we'll trigger it manually.
 
-1. Navigate to the master branch and the file `notat-web/index.html`, and edit it.
-1. Add a new-line at the end of the file.
-1. Do not commit directly to the `master` branch, but rather select `Create a new branch for this commit and start a pull request`.
-1. Create the pull request
-1. Wait a few seconds and you should see that the workflow has been triggered.
+1. Navigate to the `Actions` tab.
+1. Click on `notat-web-CI in the workflows list.
+1. Click on `Run workflow`
+    - Use workflow from `Branch: master`.
+    - Click on the green `Run workflow` button.
 
 ![](images/running-notat-we-ci.png)
 
-The workflow should execute successfully, and when it is you can safely approve and merge the pull-request. Which, again, should
-trigger the workflow, and when it's successful we should find the container in the `Packages` list.
+The workflow should execute successfully, and when it's successful we should find the container in the `Packages` list.
 
 ![](images/two-packages-on-github.png)
 
@@ -200,7 +198,7 @@ a list of branches, select `add-deploy-manifests`. Create the pull-request, revi
 
 ## Step 4: Add deployment to cluster
 We're getting closer to a complete CI/CD setup. What remains is to tell the Kubernetes cluster we want to deploy to about our
-deployment manifests. In the cluster there is an operator that continuously checks for the `cx-devops-101/k8s-infra` cluster for
+deployment manifests. In our cluster there is an operator that continuously checks the `cx-devops-101/k8s-infra` repository for
 changes, so our goal at this point is to add a pull-request to that repository where we tell the operator about our application.
 
 Go to [cx-devops-101/k8s-infra](https://github.com/cx-devops-101/k8s-infra), fork it and continue with the instructions you find
