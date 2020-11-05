@@ -46,8 +46,8 @@ your repository and switch to the `add-ci-workflows` branch.
 
 ![](images/add-ci-workflow-branch.png)
 
-You should now see the directory `.github/workflows` directory, so navigate to it. We need to edit both 
-`notat-api-ci.yaml` and `notat-web-ci.yaml`, so do the following for both files.
+You should now see the directory `.github/workflows`. We need to edit both
+`notat-api-ci.yaml` and `notat-web-ci.yaml` in this directory, so do the following for both files.
 
 1. Navigate to the file, i.e click on it.
 1. Click on edit (the pencil in the top-right corner of the file view).
@@ -115,7 +115,7 @@ executed for pull-requests.
 ![](images/build-failed.png)
 
 What happened? The job failed right? The reason? Well, we broke a unit test with our change and we might also have broken
-expecations that other applications has about the API. The API specification in our case states that valid answers for that endpoint
+expectations that other applications has about the API. The API specification in our case states that valid answers for that endpoint
 is `Ok` or `Healthy`. We still want to make a change that will trigger a build so, let's change it to `Ok` instead.
 
 1. Navigate to the `Code` tab.
