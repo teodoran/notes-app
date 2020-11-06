@@ -131,6 +131,8 @@ And voilà, the workflow should be successful and we can go ahead and merge the 
 ![](images/merge-pull-request.png)
 
 ### Build from master
+![](images/artifact.png)
+
 Merging the pull-request will trigger the `notat-api-CI` workflow for the master branch. When triggered by a change on the master-branch, the workflow will push the container image to your GitHub package registry.
 
 When the workflow is successful you can verify this by going to your GitHub profile page and navigate to the `Packages` tab, where you should find the `notes-app/notat-api` container.
