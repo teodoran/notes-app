@@ -9,6 +9,9 @@ and please don't attempt to scale it with multiple instances.
 
 
 ## Step 1: Fork it
+
+![](images/develop.png)
+
 The first step is to fork this repository to your own GitHub user account. When you've forked it, you've got two options:
 1. Clone the repository to your computer, and follow the rest of the instructions by performing changes
 locally and pushing them to GitHub.
@@ -17,6 +20,9 @@ locally and pushing them to GitHub.
 ![](images/fork-it.gif)
 
 ## Step 2: Setup CI
+
+![](images/integrate.png)
+
 As with most DevOps oriented projects, we need some CI workflows/pipelines/jobs. Writing such pipelines
 for a CI framework you haven't used before is always a big hassle, but don't worry - we've got you covered.
 In your forked repository you'll find a branch named `add-ci-workflows` where we've prepared the GitHub
@@ -131,6 +137,7 @@ And voilà, the workflow should be successful and we can go ahead and merge the 
 ![](images/merge-pull-request.png)
 
 ### Build from master
+
 ![](images/artifact.png)
 
 Merging the pull-request will trigger the `notat-api-CI` workflow for the master branch. When triggered by a change on the master-branch, the workflow will push the container image to your GitHub package registry.
@@ -169,6 +176,9 @@ Make a note of the `notes-web` container image tag as well, e.g. something like 
 `docker run --rm -it ghcr.io/<github username>/notes-app/notat-web`.
 
 ## Step 3: Add deployment manifests
+
+![](images/deploy.png)
+
 At this point we hope that you're positively steaming with anticipation of how your brand new Sticky Notes application looks,
 and you're ready to experience it's wonders. Before you can do that though, you must declare how it shall be deployed.
 For the purposes of this workshop we've elected to use [Kubernetes](https://kubernetes.io/), so we need Kubernetes workload manifests, which we of course have prepared for you.
